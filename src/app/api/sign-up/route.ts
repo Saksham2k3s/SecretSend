@@ -56,9 +56,10 @@ export async function POST(request: Request) {
         verifyCodeExpiry: expiryDate,
         isVerified: false,
         isAcceptingMessages: true,
+        resetPasswordToken: '',
         messages: [],
       });
-
+      console.log("This is new user", newUser);
       await newUser.save();
     }
 
