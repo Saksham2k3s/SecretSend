@@ -26,6 +26,7 @@ export interface User extends Document {
   isVerified: boolean;
   isAcceptingMessages: boolean;
   messages: Message[];
+  resetPasswordToken: string
 }
 
 // Updated User schema
@@ -61,6 +62,10 @@ const UserSchema: Schema<User> = new mongoose.Schema({
   isAcceptingMessages: {
     type: Boolean,
     default: true,
+  },
+  resetPasswordToken: {
+    type: String,
+    default: ''
   },
   messages: [MessageSchema],
 });
