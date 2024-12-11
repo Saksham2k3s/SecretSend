@@ -60,7 +60,7 @@ export default function SignInForm() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+      <div className="w-full max-w-md p-8 space-y-5 bg-white rounded-lg shadow-md">
         <div className="text-center">
           <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
             Welcome Back to SecretSend
@@ -108,7 +108,7 @@ export default function SignInForm() {
             </Link>{" "}
           </p>
         </div>
-        <div className="text-center mt-4">
+        <div className="text-center -mt-4">
           <p>
             Not a member yet?{" "}
             <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
