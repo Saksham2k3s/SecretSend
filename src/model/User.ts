@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface Message extends Document {
   content: string;
   createdAt: Date;
+  messageType: string
 }
 
 const MessageSchema: Schema<Message> = new mongoose.Schema({
@@ -15,6 +16,11 @@ const MessageSchema: Schema<Message> = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
+  messageType: {
+    type: String,
+    required: true,
+    enum: ["text", "audio"]
+  }
 });
 
 export interface User extends Document {
