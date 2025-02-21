@@ -2,26 +2,28 @@ import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const API_KEY: any = process.env.GIMINI_API_KEY;
+
 export async function POST(req: Request) {
-  const prompt =
-    "Create a list of three open-ended and" +
-    "engaging questions formatted as a single string. Each" +
-    "question should be separated by '||'. These questions are" +
-    "for an anonymous social messaging platform, like Qooh.me," +
-    "and should be suitable for a diverse audience. Avoid" +
-    "personal or sensitive topics, focusing instead on" +
-    "universal themes that encourage friendly interaction. For" +
-    "example, your output should be structured like this:" +
-    "'What's a hobby you've recently started? || If you could" +
-    "have dinner with any historical figure, who would it be? ||" +
-    "What's a simple thing that makes you happy?'. Ensure the" +
-    "questions are intriguing, foster curiosity, and" +
-    "contribute to a positive and welcoming conversational" +
-    "environment.";
+  const contextId = new Date().getTime(); // Unique identifier for variation
+
+  const prompt = `Generate three **completely fresh and unique** open-ended questions in the format: 
+  "Question 1 || Question 2 || Question 3". These questions are for an anonymous social platform and 
+  should encourage fun, thoughtful, and engaging conversations. 
+
+  Avoid repetition from previous responses and include creative topics.  
+  Example categories: hobbies, future aspirations, hypothetical scenarios, travel, fun challenges.  
+  Context ID: ${contextId}.`;
 
   try {
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      generationConfig: {
+        temperature: 1.2,  // More creativity and variation
+        topP: 0.9,        
+        maxOutputTokens: 200, // Limit output length
+      },
+    });
 
     const result = await model.generateContent(prompt);
 
