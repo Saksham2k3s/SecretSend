@@ -22,6 +22,7 @@ export async function POST(request: Request) {
     const FRONTEND_URL = `${process.env.FRONTEND_URL}/reset-password/${resetPasswordToken}`
     // Send verification code
     const emailResponse = await sendResetPasswordOTP(
+      email,
       userByEmail.username,
       FRONTEND_URL
     );
