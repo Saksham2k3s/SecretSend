@@ -9,7 +9,7 @@ export async function sendResetPasswordOTP(
 ): Promise<ApiResponse> {
   try {
     await resend.emails.send({
-      from: "send.sakshamtech.xyz",
+      from: "onboarding@resend.dev",
       to: email,
       subject: "SecretSend Verification Code",
       react: ResetPasswordEmail({ username, url: frontendURL }),
