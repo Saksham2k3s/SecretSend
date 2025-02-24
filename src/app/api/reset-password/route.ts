@@ -3,7 +3,6 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import crypto from "crypto"
 export async function POST(request: Request) {
-  console.log("Inside reset password");
   await dbConnect();
 
   try {
@@ -40,7 +39,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         success: true,
-        message: 'Reset Password Request Received. Please verify your account first.',
+        message: `Password reset link has been sent to your email: ${email}.`,
         username: userByEmail.username
       },
       { status: 201 }
