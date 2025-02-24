@@ -50,8 +50,9 @@ export default function VerifyAccount() {
 
   // useEffect to watch focus index
   useEffect(() => {
-    if (inputRefs.current[focusIndex]) {
-      inputRefs.current[focusIndex].focus();
+    const inputElement = inputRefs.current[focusIndex];
+    if (inputElement && typeof inputElement.focus === "function") {
+      inputElement.focus();
     }
   }, [focusIndex]);
 
