@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     userByEmail.verifyCodeExpiry = new Date(Date.now() + 15 * 60 * 1000);
     userByEmail.resetPasswordToken = resetPasswordToken;
     await userByEmail.save();
-    // change it according to need
+    // Change it according to need
     const FRONTEND_URL = `${process.env.FRONTEND_URL}/reset-password/${resetPasswordToken}`
     // Send verification code
     const emailResponse = await sendResetPasswordOTP(
