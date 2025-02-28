@@ -109,7 +109,7 @@ function Page() {
                       </svg>
                     </DialogTrigger>
                     <DialogContent>
-                      <DialogTitle>Hii</DialogTitle>
+                      <DialogTitle> 🎤 </DialogTitle>
                       <VoiceInputModal username={username} closeModal={() => setIsModalOpen(false)} />
                     </DialogContent>
                   </Dialog>
