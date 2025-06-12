@@ -1,17 +1,27 @@
 [
   {
-    "title": "Message from User123",
-    "content": "Hey, how are you doing today?",
-    "received": "10 minutes ago"
+    "title": "Anonymous Reflection",
+    "content": "Sometimes, all we need is someone to listen — even if they never know our name.",
+    "received": "Just now"
   },
   {
-    "title": "Message from SecretAdmirer",
-    "content": "I really liked your recent post!",
+    "title": "From a Secret Supporter",
+    "content": "You're doing better than you think. Keep going — the world needs your light.",
+    "received": "18 minutes ago"
+  },
+  {
+    "title": "Whispered Advice",
+    "content": "Take breaks when needed. Growth doesn’t have to be loud to be real.",
     "received": "2 hours ago"
   },
   {
-    "title": "Message from MysteryGuest",
-    "content": "Do you have any book recommendations?",
-    "received": "1 day ago"
+    "title": "Hidden Gratitude",
+    "content": "Thank you for being kind — your actions matter more than you realize.",
+    "received": "Yesterday"
+  },
+  {
+    "title": "Late Night Thought",
+    "content": "Isn’t it strange how a small anonymous message can feel like a hug?",
+    "received": "2 days ago"
   }
 ]
