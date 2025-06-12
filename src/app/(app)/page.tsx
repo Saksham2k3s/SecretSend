@@ -34,6 +34,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 export default function Home() {
   const [searchUsername, setSearchUsername] = useState("");
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -41,7 +42,7 @@ export default function Home() {
     e.preventDefault();
 
     if (!searchUsername.trim()) return;
-
+    setLoading(true);
     try {
       const res = await axios.get<ApiResponse>("/api/find-user-by-username", {
         params: {
@@ -59,6 +60,8 @@ export default function Home() {
         description: "User not found",
         variant: "destructive",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -103,7 +106,7 @@ export default function Home() {
                     <Button variant="outline">Cancel</Button>
                   </DialogClose>
                   <Button onClick={handleClick} type="submit">
-                    Find
+                    { loading ? 'Searching...' : 'Search' }
                   </Button>
                 </DialogFooter>
               </DialogContent>
