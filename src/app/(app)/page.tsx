@@ -28,16 +28,40 @@ import {
 import { Input } from "@/components/ui/input";
 import { ReactEventHandler, useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { ApiResponse } from "@/types/ApiResponse";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function Home() {
   const [searchUsername, setSearchUsername] = useState("");
+  const { toast } = useToast();
   const router = useRouter();
-  const handleClick = (e: any) => {
+
+  const handleClick = async (e: any) => {
     e.preventDefault();
-    if (searchUsername.trim()) {
-      router.push(`/u/${searchUsername}`);
+
+    if (!searchUsername.trim()) return;
+
+    try {
+      const res = await axios.get<ApiResponse>("/api/find-user-by-username", {
+        params: {
+          username: searchUsername.trim(),
+        },
+      });
+
+      if (res.data.success) {
+        router.push(`/u/${searchUsername}`);
+      }
+    } catch (error) {
+      console.error("Error checking username:", error);
+      toast({
+        title: "Not Found",
+        description: "User not found",
+        variant: "destructive",
+      });
     }
   };
+
   return (
     <>
       {/* Main content */}
