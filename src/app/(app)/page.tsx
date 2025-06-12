@@ -1,12 +1,22 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Mail } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import Autoplay from 'embla-carousel-autoplay';
-import messages from '@/messages.json';
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Mail } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Autoplay from "embla-carousel-autoplay";
+import messages from "@/messages.json";
 
 import {
   Carousel,
@@ -14,9 +24,20 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
+} from "@/components/ui/carousel";
+import { Input } from "@/components/ui/input";
+import { ReactEventHandler, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const [searchUsername, setSearchUsername] = useState("");
+  const router = useRouter();
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    if (searchUsername.trim()) {
+      router.push(`/u/${searchUsername}`);
+    }
+  };
   return (
     <>
       {/* Main content */}
@@ -26,15 +47,44 @@ export default function Home() {
             Send Anonymous Feedback, Safely.
           </h1>
           <p className="mt-3 md:mt-4 text-base md:text-lg">
-            SecretSend lets you share your thoughts without revealing your identity.
+            SecretSend lets you share your thoughts without revealing your
+            identity.
           </p>
+          <Dialog>
+            <form>
+              <DialogTrigger asChild>
+                <Button className="text-black" variant="outline">
+                  Send Your Secret Anonymously
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Send a Silent Whisper</DialogTitle>
+                  <DialogDescription>
+                    Enter the username of the person youd like to reach out to.
+                    No names. No pressure. Just your honest thoughts — delivered
+                    safely.
+                  </DialogDescription>
+                </DialogHeader>
 
-          <Button
-            className="mt-6 text-lg px-6 py-3 bg-purple-600 hover:bg-purple-700"
-            asChild
-          >
-            <Link href="/send">Send Your Secret Anonymously</Link>
-          </Button>
+                <Input
+                  id="username"
+                  value={searchUsername}
+                  onChange={(e) => setSearchUsername(e.target.value)}
+                  name="username"
+                  defaultValue="Pedro Duarte"
+                />
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogClose>
+                  <Button onClick={handleClick} type="submit">
+                    Find
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </form>
+          </Dialog>
         </section>
 
         {/* Carousel for Messages */}
@@ -67,15 +117,15 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className=' text-black ' />
-            <CarouselNext className='text-black' />
+            <CarouselPrevious className=" text-black " />
+            <CarouselNext className="text-black" />
           </Carousel>
         </section>
       </main>
 
       {/* Footer */}
       <footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
-        Crafted with ❤️ by{' '}
+        Crafted with ❤️ by{" "}
         <Link
           href="https://sakshamportfolio2k3.netlify.app"
           className="underline"
