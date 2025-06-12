@@ -53,7 +53,7 @@ export default function Home() {
           <Dialog>
             <form>
               <DialogTrigger asChild>
-                <Button className="text-black" variant="outline">
+                <Button className="text-black mt-4" variant="outline">
                   Send Your Secret Anonymously
                 </Button>
               </DialogTrigger>
